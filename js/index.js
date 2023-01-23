@@ -8,19 +8,31 @@
  */
 
 //1. Lista med alfabetet
-//    Skapa hårdkodad lista med alfabetets bokstäver
+//    Skapa hårdkodad lista med alfabetets bokstäver - OK 
+const alphabeth = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+      "V", "X", "Y", "Z", "Å", "Ä", "Ö"]
 
-// 2. Lista med gissade bokstäver
+// 2. Lista med gissade bokstäver - OK
 //    Skapa tom lista. 
+const guessedLetters = []
 
 // 3. Skapa lista med ord. 
 //    Skapa hårdkodad lista med ord. 
+const words = ["SKOLA", "HEMMA", "VISPGRÄDDE", "UKULELE", "FLAGGSTÅNG", "KLOCKA", "HUMOR" ]
 
-// 4. Skapa funktion för att slumpa ut random ord
+// 4. Skapa funktion för att slumpa ut random ord - OK
 //    Slumpa random ord från ordlista. 
 
+function generateRandomWord() {
+  randomWord = words[(Math.floor(Math.random() * (words.length)))]
+  console.log(randomWord)
+}
+
+generateRandomWord()
+
 // 5. Visa antal bokstäver på sidan
-//    Lägg till ordet på sidan uppdelat per bokstav genom en loop. 
+//    Lägg till ordet på sidan uppdelat per bokstav genom en loop.
+document.querySelector(".word").innerHTML = `<li>${randomWord}</li>`
 //    Dölj bokstäverna med opacity. 
 //    Lägg till box(eller liknande) för varje bokstav för att 
 //    visa hur många bokstäver ordet innehåller. 
