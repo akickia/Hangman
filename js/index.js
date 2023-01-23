@@ -7,18 +7,37 @@
  document.querySelector('figure').classList.add('legs')
  */
 
- //- lista med alfabetet
-// - lista med gissade bokstäver
-// - tom lista. För varje gissad bokstav - pusha bokstav till tom lista. 
-// - slumpa ut random ord
-// - Skapa lista med ord och slumpa från listan. 
-// - lista med ord
-//För varje gissad bokstav - om bokstaven finns i ordet så ska bokstaven visas.
-//Else då ändras opaciteten på ett element i svgn. 
-// - max antal gissningar
-// - Om alla delar är visade = Game over
-// - om alla bokstäver är hittade = Vinst 
-// - antal gissningar anv gjort
+//1. Lista med alfabetet
+//    Skapa hårdkodad lista med alfabetets bokstäver
+
+// 2. Lista med gissade bokstäver
+//    Skapa tom lista. 
+
+// 3. Skapa lista med ord. 
+//    Skapa hårdkodad lista med ord. 
+
+// 4. Skapa funktion för att slumpa ut random ord
+//    Slumpa random ord från ordlista. 
+
+// 5. Visa antal bokstäver på sidan
+//    Lägg till ordet på sidan uppdelat per bokstav genom en loop. 
+//    Dölj bokstäverna med opacity. 
+//    Lägg till box(eller liknande) för varje bokstav för att 
+//    visa hur många bokstäver ordet innehåller. 
+
+// 6. Lägg till input där användaren kan skriva in bokstav.
+//    Koppla value från input till en variabel (så vi kan jämföra)
+
+// 7. För varje gissad bokstav: 
+//    Om gissad bokstav finns i ordet - visa bokstav. 
+//    Else visa ett element i svg (gubben)
+//    Lägg till gissad bokstav i listan för gissade bokstäver
+//    Visa på sidan listan med gissade bokstäver. 
+
+// 8. Om alla delar på gubben är visade = Game over (Visa game-over-box)
+//    Starta-om-knapp = reload sida. 
+
+// 9. Om alla bokstäver är hittade = Vinst (Skapa element för detta)
 
 
 // VG
