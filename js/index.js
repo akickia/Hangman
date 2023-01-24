@@ -32,13 +32,39 @@ generateRandomWord()
 
 // 5. Visa antal bokstäver på sidan
 //    Lägg till ordet på sidan uppdelat per bokstav genom en loop.
-document.querySelector(".word").innerHTML = `<li>${randomWord}</li>`
+// document.querySelector(".word").innerHTML = `<li>${randomWord}</li>`
 //    Dölj bokstäverna med opacity. 
 //    Lägg till box(eller liknande) för varje bokstav för att 
 //    visa hur många bokstäver ordet innehåller. 
 
 // 6. Lägg till input där användaren kan skriva in bokstav.
 //    Koppla value från input till en variabel (så vi kan jämföra)
+
+let wordLetter
+let keypress
+
+
+
+window.addEventListener("keypress", (event)=>{
+  keypress = event.key.toUpperCase()
+  return keypress
+})
+
+compareLetters();
+
+function compareLetters() {
+  for (letter in randomWord) {
+    wordLetter = randomWord[letter]
+    console.log(randomWord[letter]);
+    let newLiElement = document.createElement("li");
+    let ulElement = document.querySelector(".word");
+    newLiElement.innerText = wordLetter;
+    ulElement.appendChild(newLiElement);
+  if (wordLetter === keypress) {
+    console.log("Hej");
+  }
+}
+}
 
 // 7. För varje gissad bokstav: 
 //    Om gissad bokstav finns i ordet - visa bokstav. 
