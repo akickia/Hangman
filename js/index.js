@@ -42,29 +42,60 @@ generateRandomWord()
 
 let wordLetter
 let keypress
+let ulElement = document.querySelector(".word"); 
 
 
 
 window.addEventListener("keypress", (event)=>{
   keypress = event.key.toUpperCase()
-  return keypress
+  compareLetters();
 })
 
-compareLetters();
-
+displayLetters()
+let liElement = document.querySelectorAll(".word li")
+let noMatch = 0
 function compareLetters() {
   for (letter in randomWord) {
-    wordLetter = randomWord[letter]
-    console.log(randomWord[letter]);
-    let newLiElement = document.createElement("li");
-    let ulElement = document.querySelector(".word");
-    newLiElement.innerText = wordLetter;
-    ulElement.appendChild(newLiElement);
-  if (wordLetter === keypress) {
-    console.log("Hej");
+    if (randomWord[letter] !== keypress) {
+      console.log("Ney")
+    }
+    if (randomWord[letter]=== keypress) {
+      
+      console.log("Yey")
+    }
+}
+  checkWordForLetter()
+}
+
+function checkWordForLetter() {
+  if (randomWord.includes(keypress)) {
+    console.log("Display bokstav")
+  }
+  else {
+    console.log("display gubbe")
   }
 }
-}
+
+// let example = "Example String!";
+// let ourSubstring = "Example";
+
+// if (example.includes(ourSubstring)) {
+// 	console.log("The word Example is in the string.");
+// } else {
+// 	console.log("The word Example is not in the string.");
+// }
+
+
+function displayLetters () {
+  for (letter in randomWord) {
+    wordLetter = randomWord[letter]
+    let newLiElement = document.createElement("li");
+ 
+    newLiElement.innerText = wordLetter;
+    ulElement.appendChild(newLiElement);
+}}
+
+
 
 // 7. För varje gissad bokstav: 
 //    Om gissad bokstav finns i ordet - visa bokstav. 
