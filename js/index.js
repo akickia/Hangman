@@ -53,15 +53,14 @@ window.addEventListener("keypress", (event)=>{
 
 displayLetters()
 let liElement = document.querySelectorAll(".word li")
-let noMatch = 0
 function compareLetters() {
   for (letter in randomWord) {
-    if (randomWord[letter] !== keypress) {
-      console.log("Ney")
-    }
+  
     if (randomWord[letter]=== keypress) {
-      
-      console.log("Yey")
+      for (let i = 0; i<randomWord.length; i++) {
+        console.log("hejsan");
+      }
+      liElement[letter].style.color="rgba(0,0,0,1)"
     }
 }
   checkWordForLetter()
