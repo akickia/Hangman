@@ -73,6 +73,10 @@ footer ul.word li {
   color: rgba(0,0,0,0);;
 }
 
+footer ul.word li p {
+  display: none;
+}
+
 p {
   color: rgba(0,0,0,.4);
   font-size: 1.2rem;
