@@ -9,18 +9,19 @@ let wordLetter
 let keypress
 //Antal felgissningar
 let wrongAnswer = 0
-
+//Antal rätta gissningar
 let rightAnswer = 0
-
+//Antal vinster
 let wins = 0
-
-
-
+//hämta element från html
+let ulElement = document.querySelector(".word"); 
+let noMatchElement = document.querySelector(".nomatch")
 
 //Kalla på funktioner
 generateRandomWord()
 displayLetters()
 
+//-------------------EVENTLISTENERS---------------------
 //Lyssna efter tangenttryck
 window.addEventListener("keypress", (event)=>{
   //konvertera knapptryck till versal
@@ -35,17 +36,16 @@ window.addEventListener("keypress", (event)=>{
   }
 })
 
+//Vid game over - ladda om sidan
 document.querySelector("a").addEventListener("click" , () => {
     location.reload() 
     })
 
+//Vid vinst - fortsätt spelet genom funktionen resetGame
 document.getElementById("reset").addEventListener("click" , () => {
   resetGame()  
-
     })
   
-
-//Första knappen - reload - andra knappen fortsätt + poäng. 
 
 // ------- FUNKTIONER ----------
 //Generera random ord
@@ -55,46 +55,45 @@ function generateRandomWord() {
 
 //Visa antal bokstäver
 function displayLetters () {
-  //hämta ul-elementet "word"
-  let ulElement = document.querySelector(".word"); 
   //För varje bokstav i ordet
   for (letter in randomWord) {
-    //skapa li-element
+    //skapa li-element och ett p-element
     let newLiElement = document.createElement("li");
     let newParagraphElement = document.createElement("p");
     //låt wordletter = bokstaven
     wordLetter = randomWord[letter]
-    //låt texten i li-elementet vara wordletter
+    //låt texten i p-elementet vara wordletter
     newParagraphElement.innerText = wordLetter;
-    //lägg till listelementet i ul-elementet
+    //lägg till i ul-elementet
     ulElement.appendChild(newLiElement)
     newLiElement.appendChild(newParagraphElement);
 }}
 
 //Jämför bokstäver och visa om rätt
 function compareLetters() {
-  //hämta li-elementet "word li"
+  //hämta p-elementet "word li p"
   let liElement = document.querySelectorAll(".word li p")
   //För varje bokstav i ordet
   for (letter in randomWord) {
     //Om bokstav övensstämmer med knapptryck
     if (randomWord[letter]=== keypress) {
-      //Ändra färg på bokstav så den syns
+      //Ändra display på bokstav så den syns
       liElement[letter].style.display="flex"
+      //Lägg till poäng i variabel rightAnswer
       rightAnswer ++
+      //If-sats för vinst
       if (rightAnswer == randomWord.length) {
+        //Visa vinnar-sektion
         document.querySelector(".winner").style.display = "flex"
         document.querySelector(".winner p b").innerText = randomWord
-    }}
-}
+    }}}
   //Kalla på funktion
   checkWordForLetter()
 }
-let noMatchElement = document.querySelector(".nomatch")
+
 //Visa gissade bokstäver
 function displayGuessedLetters () {
-  //Hämta element
-  
+  //Skapa nytt li-element
   let newLiElement = document.createElement("li");
   //Sätt li till bokstaven användaren tryckt in
   newLiElement.innerText = keypress;
@@ -102,12 +101,9 @@ function displayGuessedLetters () {
   noMatchElement.appendChild(newLiElement);
 }
 
-// Fundera på hur vi kan dölja bokstäverna på annat sätt. 
-
-
 //Testa om bokstav finns, annars visa gubbe
 function checkWordForLetter() {
-  //Im bokstaven ej finns i ordet
+  //Om bokstaven ej finns i ordet
   if (!randomWord.includes(keypress)) {
     //Lägg till 1 till variabeln wrongAnswer
     wrongAnswer++
@@ -131,24 +127,44 @@ function checkWordForLetter() {
       //Visa vilket ord vi sökte
       document.querySelector(".game-over p b").innerText = randomWord
     }
-
   }
 }
 
+//Ta bort klasser från gubbe för att nollställa
+function removeHangmanClasses() {
+  document.querySelector('figure').classList.remove('arms')
+  document.querySelector('figure').classList.remove('legs')
+  document.querySelector('figure').classList.remove('body')
+  document.querySelector('figure').classList.remove('scaffold')
+  document.querySelector('figure').classList.remove('head')
+}
+
+//Reset allt som behövs för att starta om
 function resetGame () {
-  noMatchElement.innerHTML = " "
+  //Nollställ gissade bokstäver
+  noMatchElement.innerHTML = ""
+  //Nollställ visade bokstäver i randomordet
+  ulElement.innerHTML = ""
+  //Nollställ lista med gissade bokstäver
   guessedLetters = []
-  console.log(guessedLetters)
-  wins++
-  document.querySelector(".wins").textContent = wins
+  //Ta bort klasser från gubbe
+  removeHangmanClasses()
+  //Visa antal vinster
+  displayWins()
+  //Visa inte vinnar-sektionen
   document.querySelector(".winner").style.display = "none"
+  //Nollställ poäng
   rightAnswer = 0
   wrongAnswer = 0
+  //Starta om funktioner
   generateRandomWord()
   displayLetters()
 }
 
-
-
-// VG
-// - poängräknare
+//Visa antal vinster
+function displayWins() {
+  //Öka poäng
+  wins++
+  //Visa poäng
+  document.querySelector(".wins").textContent = wins
+}

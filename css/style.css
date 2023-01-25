@@ -26,6 +26,7 @@ main figure svg > * {
   opacity: 0;
 }
 
+
 main figure svg #ground             { opacity: 1; }
 main figure.scaffold svg #scaffold  { opacity: 1; }
 main figure.head     svg #head      { opacity: 1; }
@@ -83,7 +84,6 @@ p {
   font-size: 1.2rem;
   margin: 1rem 0;
 }
-
 
 section.game-over, section.winner {
   position: fixed;
