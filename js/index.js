@@ -2,7 +2,7 @@
 //Lista random ord
 const words = ["SKOLA", "HEMMA", "VISPGRÄDDE", "UKULELE", "FLAGGSTÅNG", "KLOCKA", "HUMOR" ]
 //Tom lista för gissade bokstäver
-const guessedLetters = []
+let guessedLetters = []
 //Bokstav i ord
 let wordLetter
 //Knapptryck
@@ -11,6 +11,8 @@ let keypress
 let wrongAnswer = 0
 
 let rightAnswer = 0
+
+let wins = 0
 
 
 
@@ -33,12 +35,17 @@ window.addEventListener("keypress", (event)=>{
   }
 })
 
-document.querySelectorAll("a").forEach((btn)  => {
-  btn.addEventListener("click" , () => {
+document.querySelector("a").addEventListener("click" , () => {
     location.reload() 
     })
-  }
-)
+
+document.getElementById("reset").addEventListener("click" , () => {
+  resetGame()  
+
+    })
+  
+
+//Första knappen - reload - andra knappen fortsätt + poäng. 
 
 // ------- FUNKTIONER ----------
 //Generera random ord
@@ -54,40 +61,40 @@ function displayLetters () {
   for (letter in randomWord) {
     //skapa li-element
     let newLiElement = document.createElement("li");
+    let newParagraphElement = document.createElement("p");
     //låt wordletter = bokstaven
     wordLetter = randomWord[letter]
     //låt texten i li-elementet vara wordletter
-    newLiElement.innerText = wordLetter;
+    newParagraphElement.innerText = wordLetter;
     //lägg till listelementet i ul-elementet
-    ulElement.appendChild(newLiElement);
+    ulElement.appendChild(newLiElement)
+    newLiElement.appendChild(newParagraphElement);
 }}
 
 //Jämför bokstäver och visa om rätt
 function compareLetters() {
   //hämta li-elementet "word li"
-  let liElement = document.querySelectorAll(".word li")
+  let liElement = document.querySelectorAll(".word li p")
   //För varje bokstav i ordet
   for (letter in randomWord) {
     //Om bokstav övensstämmer med knapptryck
     if (randomWord[letter]=== keypress) {
       //Ändra färg på bokstav så den syns
-      liElement[letter].style.color="rgba(0,0,0,1)"
+      liElement[letter].style.display="flex"
       rightAnswer ++
       if (rightAnswer == randomWord.length) {
         document.querySelector(".winner").style.display = "flex"
         document.querySelector(".winner p b").innerText = randomWord
-    }
-      console.log(rightAnswer);
-    }
+    }}
 }
   //Kalla på funktion
   checkWordForLetter()
 }
-
+let noMatchElement = document.querySelector(".nomatch")
 //Visa gissade bokstäver
 function displayGuessedLetters () {
   //Hämta element
-  let noMatchElement = document.querySelector(".nomatch")
+  
   let newLiElement = document.createElement("li");
   //Sätt li till bokstaven användaren tryckt in
   newLiElement.innerText = keypress;
@@ -127,9 +134,20 @@ function checkWordForLetter() {
 
   }
 }
-console.log(randomWord.length);
-//När hela ordet är ifyllt har man vunnit.
-//Kunna starta om när man fått gameover
+
+function resetGame () {
+  noMatchElement.innerHTML = " "
+  guessedLetters = []
+  console.log(guessedLetters)
+  wins++
+  document.querySelector(".wins").textContent = wins
+  document.querySelector(".winner").style.display = "none"
+  rightAnswer = 0
+  wrongAnswer = 0
+  generateRandomWord()
+  displayLetters()
+}
+
 
 
 // VG

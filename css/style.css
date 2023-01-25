@@ -2,6 +2,7 @@ body {
   margin: 0;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'PT Sans', sans-serif;
@@ -70,11 +71,11 @@ footer ul.word li {
   border-bottom: 2px solid #222;
   margin: 0 .25rem;
   background: rgba(0,0,0,.1);
-  color: rgba(0,0,0,0);;
 }
 
 footer ul.word li p {
   display: none;
+  color: black
 }
 
 p {
