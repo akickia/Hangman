@@ -10,6 +10,11 @@ let keypress
 //Antal felgissningar
 let wrongAnswer = 0
 
+let rightAnswer = 0
+
+
+
+
 //Kalla på funktioner
 generateRandomWord()
 displayLetters()
@@ -27,6 +32,13 @@ window.addEventListener("keypress", (event)=>{
     compareLetters();
   }
 })
+
+document.querySelectorAll("a").forEach((btn)  => {
+  btn.addEventListener("click" , () => {
+    location.reload() 
+    })
+  }
+)
 
 // ------- FUNKTIONER ----------
 //Generera random ord
@@ -60,6 +72,12 @@ function compareLetters() {
     if (randomWord[letter]=== keypress) {
       //Ändra färg på bokstav så den syns
       liElement[letter].style.color="rgba(0,0,0,1)"
+      rightAnswer ++
+      if (rightAnswer == randomWord.length) {
+        document.querySelector(".winner").style.display = "flex"
+        document.querySelector(".winner p b").innerText = randomWord
+    }
+      console.log(rightAnswer);
     }
 }
   //Kalla på funktion
@@ -78,6 +96,7 @@ function displayGuessedLetters () {
 }
 
 // Fundera på hur vi kan dölja bokstäverna på annat sätt. 
+
 
 //Testa om bokstav finns, annars visa gubbe
 function checkWordForLetter() {
@@ -105,10 +124,10 @@ function checkWordForLetter() {
       //Visa vilket ord vi sökte
       document.querySelector(".game-over p b").innerText = randomWord
     }
+
   }
 }
-
-
+console.log(randomWord.length);
 //När hela ordet är ifyllt har man vunnit.
 //Kunna starta om när man fått gameover
 

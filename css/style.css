@@ -84,7 +84,7 @@ p {
 }
 
 
-section.game-over {
+section.game-over, section.winner {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -97,22 +97,22 @@ section.game-over {
   display: none;
 }
 
-section.game-over.show {
+section.game-over.show, section.winner.show {
   display: flex;
 }
 
-.game-over > h1 {
+.game-over > h1, section.winner > h1 {
   font-size: 6rem;
   margin: 0;
 }
 
-.game-over > p {
+.game-over > p, section.winner > p {
   font-size: 2rem;
   color: white;
   margin: 0;
 }
 
-.game-over > a {
+.game-over > a, section.winner > a{
   background: white;
   color: #222;
   text-decoration: none;
@@ -122,6 +122,6 @@ section.game-over.show {
   opacity: .8;
 }
 
-.game-over > a:hover {
+.game-over > a:hover, section.winner > a:hover {
   opacity: 1;
 }
