@@ -21,6 +21,10 @@
         <p>You found the word, <b></b>!</p>
         <a href="#" id="reset">Play again?</a>
     </section>
+    <section class="alert">
+        <h1>Choose your difficulty first!</h1>
+        <button>Continue</button>
+    </section>
     <main>
         <figure class="">
             <svg width="501" height="565" viewbox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,15 +36,18 @@
                 <path id="head" d="M405.17 151.696C405.829 151.194 405.957 150.253 405.456 149.594C404.955 148.934 404.014 148.806 403.354 149.307L405.17 151.696ZM397.065 154.087C396.405 154.588 396.277 155.529 396.778 156.189C397.28 156.848 398.221 156.976 398.88 156.475L397.065 154.087ZM399.866 149.249C399.364 148.59 398.423 148.461 397.764 148.963C397.104 149.464 396.976 150.405 397.477 151.064L399.866 149.249ZM402.257 157.354C402.758 158.013 403.699 158.142 404.359 157.64C405.018 157.139 405.147 156.198 404.645 155.539L402.257 157.354ZM400.429 166.676C399.657 166.977 399.276 167.847 399.577 168.619C399.878 169.39 400.748 169.772 401.52 169.471L400.429 166.676ZM403.238 169.663C403.69 170.358 404.619 170.555 405.313 170.104C406.008 169.653 406.205 168.724 405.754 168.029L403.238 169.663ZM347.858 134.23C344.947 155.571 359.888 175.232 381.23 178.142L381.635 175.17C361.935 172.483 348.143 154.335 350.83 134.635L347.858 134.23ZM381.23 178.142C402.571 181.053 422.232 166.112 425.142 144.77L422.17 144.365C419.483 164.065 401.335 177.857 381.635 175.17L381.23 178.142ZM425.142 144.77C428.053 123.429 413.112 103.768 391.77 100.858L391.365 103.83C411.065 106.517 424.857 124.665 422.17 144.365L425.142 144.77ZM391.77 100.858C370.429 97.947 350.768 112.888 347.858 134.23L350.83 134.635C353.517 114.935 371.665 101.143 391.365 103.83L391.77 100.858ZM403.354 149.307L397.065 154.087L398.88 156.475L405.17 151.696L403.354 149.307ZM397.477 151.064L402.257 157.354L404.645 155.539L399.866 149.249L397.477 151.064ZM356.5 9.00482L357.532 116.004L360.532 115.976L359.5 8.97589L356.5 9.00482ZM401.52 169.471C401.751 169.38 402.175 169.286 402.566 169.322C402.924 169.355 403.114 169.472 403.238 169.663L405.754 168.029C404.988 166.85 403.819 166.424 402.839 166.335C401.893 166.248 401.001 166.453 400.429 166.676L401.52 169.471Z" fill="black"/>
             </svg>    
         </figure>
-        <section class="difficulty">
-            <button class="easy" onclick="generateRandomWord(easyWords)">Lätt</button>
-            <button class="medium" onclick="generateRandomWord(mediumWords)">Medium</button>
-            <button class="hard" onclick="generateRandomWord(hardWords)">Svår</button>
-        </section>
         <footer>
+            <section class="difficulty">
+                <section>
+                    <button class="easy" onclick="generateRandomWord(easyWords)">Easy</button>
+                    <button class="medium" onclick="generateRandomWord(mediumWords)">Medium</button>
+                    <button class="hard" onclick="generateRandomWord(hardWords)">Hard</button>
+                </section>
+                <p>choose your level</p>
+            </section>
             <ul class="nomatch"></ul>
             <ul class="word"></ul>
-        <p>press a key on your keyboard</p>
+            <p class="help">press a key on your keyboard</p>
         </footer>
     </main>
     <script src="js/index.js"></script>

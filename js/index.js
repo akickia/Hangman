@@ -14,15 +14,26 @@ let wrongAnswer = 0
 let rightAnswer = 0
 //Antal vinster
 let wins = 0
+//Nollställd variabel för ord
+let randomWord = ""
+
 //hämta element från html
 let ulElement = document.querySelector(".word"); 
 let noMatchElement = document.querySelector(".nomatch")
-let buttons = document.querySelectorAll("button")
-
+let buttons = document.querySelectorAll(".difficulty button")
+let continueBtn = document.querySelector(".alert button")
 
 //-------------------EVENTLISTENERS---------------------
 //Lyssna efter tangenttryck
 window.addEventListener("keypress", (event)=>{
+  //Om svårighetsgrad inte valts - visa felmeddelande
+  if (randomWord == "") {
+    document.querySelector(".alert").style.display = "flex"
+    continueBtn.addEventListener("click", () => {
+      document.querySelector(".alert").style.display = "none"
+    })
+  }
+  else {
   //konvertera knapptryck till versal
   keypress = event.key.toUpperCase()
   //Om bokstav inte är använd tidigare:
@@ -32,7 +43,7 @@ window.addEventListener("keypress", (event)=>{
     //kalla på funktioner
     displayGuessedLetters()
     compareLetters();
-  }
+  }}
 })
 
 //Vid game over - ladda om sidan
@@ -49,8 +60,9 @@ document.getElementById("reset").addEventListener("click" , () => {
 // ------------ FUNKTIONER ----------------
 //Generera random ord
 function generateRandomWord(list) {
-  //Gör knappar disabled när man valt svårighetsgrad
-  buttons.forEach((btn) => {btn.disabled = true})
+  //Döljer och visar text när man valt svårighetsgrad
+  document.querySelector(".difficulty").style.display = "none"
+  document.querySelector(".help").style.display = "block"
   //generera randomord beroende på lista
   randomWord = list[(Math.floor(Math.random() * (list.length)))]
   //visa antal bokstäver
@@ -158,8 +170,9 @@ function resetGame () {
   //Nollställ poäng
   rightAnswer = 0
   wrongAnswer = 0
-  //Gör knappar klickbara igen
-  buttons.forEach((btn) => {btn.disabled = false})
+  //Visa knappar
+  document.querySelector(".difficulty").style.display = "block"
+  document.querySelector(".help").style.display = "none"
 }
 
 //Visa antal vinster
@@ -169,3 +182,5 @@ function displayWins() {
   //Visa poäng
   document.querySelector(".wins").textContent = wins
 }
+
+
