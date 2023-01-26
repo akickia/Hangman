@@ -1,10 +1,11 @@
-// ------- VARIABLER ----------
-//Lista random ord
-const words = ["SKOLA", "HEMMA", "VISPGRÄDDE", "UKULELE", "FLAGGSTÅNG", "KLOCKA", "HUMOR" ]
+// ------------ VARIABLER ---------------
+//Lista random ord olika svårighetsgrad
+const easyWords = ["KOMPISAR", "VISPGRÄDDE", "SOMMARLOV", "FLAGGSTÅNG", "KOMMENTARER", "MELLANMJÖLK" ]
+const mediumWords = ["SKOLA", "ÅSKA", "HEMMA", "SKOR", "SOMMAR", "KLOCKA", "HUMOR" ]
+const hardWords = ["HON", "VEM", "SÄL", "LEK", "HEM", "SKO", "BOK" ]
+
 //Tom lista för gissade bokstäver
 let guessedLetters = []
-//Bokstav i ord
-let wordLetter
 //Knapptryck
 let keypress
 //Antal felgissningar
@@ -16,10 +17,8 @@ let wins = 0
 //hämta element från html
 let ulElement = document.querySelector(".word"); 
 let noMatchElement = document.querySelector(".nomatch")
+let buttons = document.querySelectorAll("button")
 
-//Kalla på funktioner
-generateRandomWord()
-displayLetters()
 
 //-------------------EVENTLISTENERS---------------------
 //Lyssna efter tangenttryck
@@ -45,25 +44,28 @@ document.querySelector("a").addEventListener("click" , () => {
 document.getElementById("reset").addEventListener("click" , () => {
   resetGame()  
     })
-  
 
-// ------- FUNKTIONER ----------
+
+// ------------ FUNKTIONER ----------------
 //Generera random ord
-function generateRandomWord() {
-  randomWord = words[(Math.floor(Math.random() * (words.length)))]
+function generateRandomWord(list) {
+  //Gör knappar disabled när man valt svårighetsgrad
+  buttons.forEach((btn) => {btn.disabled = true})
+  //generera randomord beroende på lista
+  randomWord = list[(Math.floor(Math.random() * (list.length)))]
+  //visa antal bokstäver
+  displayLetters()
 }
 
 //Visa antal bokstäver
 function displayLetters () {
   //För varje bokstav i ordet
   for (letter in randomWord) {
-    //skapa li-element och ett p-element
+    //skapa li-element och p-element
     let newLiElement = document.createElement("li");
     let newParagraphElement = document.createElement("p");
-    //låt wordletter = bokstaven
-    wordLetter = randomWord[letter]
     //låt texten i p-elementet vara wordletter
-    newParagraphElement.innerText = wordLetter;
+    newParagraphElement.innerText = randomWord[letter];
     //lägg till i ul-elementet
     ulElement.appendChild(newLiElement)
     newLiElement.appendChild(newParagraphElement);
@@ -156,9 +158,8 @@ function resetGame () {
   //Nollställ poäng
   rightAnswer = 0
   wrongAnswer = 0
-  //Starta om funktioner
-  generateRandomWord()
-  displayLetters()
+  //Gör knappar klickbara igen
+  buttons.forEach((btn) => {btn.disabled = false})
 }
 
 //Visa antal vinster
