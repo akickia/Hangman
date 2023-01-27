@@ -3,7 +3,7 @@
 const easyWords = ["KOMPISAR", "VISPGRÄDDE", "SOMMARLOV", "FLAGGSTÅNG", "KOMMENTARER", "MELLANMJÖLK" ]
 const mediumWords = ["SKOLA", "ÅSKA", "HEMMA", "SKOR", "SOMMAR", "KLOCKA", "HUMOR" ]
 const hardWords = ["HON", "VEM", "SÄL", "LEK", "HEM", "SKO", "BOK" ]
-
+const lettersInAlphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "å", "ä", "ö"]
 //Tom lista för gissade bokstäver
 let guessedLetters = []
 //Knapptryck
@@ -34,6 +34,7 @@ window.addEventListener("keypress", (event)=>{
     })
   }
   else {
+    if (lettersInAlphabet.includes(event.key)) {
   //konvertera knapptryck till versal
   keypress = event.key.toUpperCase()
   //Om bokstav inte är använd tidigare:
@@ -43,7 +44,7 @@ window.addEventListener("keypress", (event)=>{
     //kalla på funktioner
     displayGuessedLetters()
     compareLetters();
-  }}
+  }}}
 })
 
 //Vid game over - ladda om sidan
